@@ -327,3 +327,29 @@ document.addEventListener('click', (e) => {
         startButton.classList.remove('active');
     }
 });
+
+// ── Shut Down ──
+
+const shutdownScreen = document.getElementById('shutdown-screen');
+const shutdownButton = document.getElementById('start-menu-shutdown');
+
+shutdownButton.addEventListener('click', () => {
+    startMenu.classList.remove('open');
+    startButton.classList.remove('active');
+
+    // Remove all open windows
+    document.querySelectorAll('.window').forEach(w => w.remove());
+
+    // Fade to black then show shutdown message
+    document.body.style.transition = 'opacity 0.5s';
+    document.body.style.opacity = '0';
+
+    setTimeout(() => {
+        shutdownScreen.classList.add('active');
+        document.body.style.opacity = '1';
+    }, 600);
+});
+
+shutdownScreen.addEventListener('click', () => {
+    location.reload();
+});
