@@ -3,22 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User</title>
-    <link rel="stylesheet" href="../style.css">
+    <title>User Properties</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="window">
         <div class="title-bar">
-            <div class="title-bar-text">User</div>
+            <div class="title-bar-text">User Properties</div>
             <div class="title-bar-controls">
                 <button aria-label="Minimize"></button>
                 <button aria-label="Maximize"></button>
                 <button aria-label="Close"></button>
             </div>
         </div>
-        <div class="window-body">
-            <h1>About Me</h1>
-            <p>This is where my CV information will go.</p>
+        <div class="window-body" style="padding: 0;">
+            <div class="tabs-container">
+                <div class="tab active" data-tab="general">General</div>
+                <div class="tab" data-tab="experience">Experience</div>
+                <div class="tab" data-tab="education">Education</div>
+                <div class="tab" data-tab="skills">Skills</div>
+                <div class="tab" data-tab="projects">Projects</div>
+            </div>
+
+            <div class="tab-panel-border">
+
+            <!-- General Tab -->
+            <div class="tab-content active" id="general">
+                <div class="profile-header">
+                    <img src="https://win98icons.alexmeub.com/icons/png/user_computer-1.png" alt="User" class="profile-icon">
+                    <div class="profile-info">
+                        <h2>Your Name</h2>
+                        <p>Software Developer</p>
+                    </div>
+                </div>
+
+                <div class="property-group">
+                    <div class="section-title">Personal Information</div>
+                    <div class="property-row">
+                        <div class="property-label">Name:</div>
+                        <div class="property-value">Your Full Name</div>
+                    </div>
+                    <div class="property-row">
+                        <div class="property-label">Title:</div>
+                        <div class="property-value">Software Developer</div>
+                    </div>
+                    <div class="property-row">
+                        <div class="property-label">Email:</div>
+                        <div class="property-value">your.email@example.com</div>
+                    </div>
+                    <div class="property-row">
+                        <div class="property-label">Location:</div>
+                        <div class="property-value">City, Country</div>
+                    </div>
+                    <div class="property-row">
+                        <div class="property-label">Phone:</div>
+                        <div class="property-value">+1 (555) 123-4567</div>
+                    </div>
+                </div>
+
+                <div class="property-group">
+                    <div class="section-title">About</div>
+                    <div class="property-value">
+                        Passionate software developer with experience in building web applications and solving complex problems.
+                        Dedicated to writing clean, maintainable code and continuously learning new technologies.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience Tab -->
+            <div class="tab-content" id="experience">
+                <div class="experience-item">
+                    <div class="item-title">Senior Software Developer</div>
+                    <div class="item-subtitle">Company Name</div>
+                    <div class="item-date">January 2022 - Present</div>
+                    <div class="item-description">
+                        • Led development of key features for web applications<br>
+                        • Collaborated with cross-functional teams<br>
+                        • Mentored junior developers<br>
+                        • Improved application performance by 40%
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="item-title">Software Developer</div>
+                    <div class="item-subtitle">Previous Company</div>
+                    <div class="item-date">June 2019 - December 2021</div>
+                    <div class="item-description">
+                        • Developed and maintained web applications<br>
+                        • Implemented RESTful APIs<br>
+                        • Participated in code reviews<br>
+                        • Worked with agile methodologies
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="item-title">Junior Developer</div>
+                    <div class="item-subtitle">First Company</div>
+                    <div class="item-date">January 2018 - May 2019</div>
+                    <div class="item-description">
+                        • Assisted in developing web applications<br>
+                        • Fixed bugs and implemented minor features<br>
+                        • Learned best practices and coding standards
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education Tab -->
+            <div class="tab-content" id="education">
+                <div class="education-item">
+                    <div class="item-title">Bachelor of Science in Computer Science</div>
+                    <div class="item-subtitle">University Name</div>
+                    <div class="item-date">2014 - 2018</div>
+                    <div class="item-description">
+                        • GPA: 3.8/4.0<br>
+                        • Relevant coursework: Data Structures, Algorithms, Web Development, Database Systems<br>
+                        • Dean's List: 2016, 2017, 2018<br>
+                        • Senior Project: Built a full-stack web application
+                    </div>
+                </div>
+
+                <div class="property-group">
+                    <div class="section-title">Certifications</div>
+                    <div class="property-row">
+                        <div class="property-label">▪</div>
+                        <div class="property-value">AWS Certified Developer - Associate (2023)</div>
+                    </div>
+                    <div class="property-row">
+                        <div class="property-label">▪</div>
+                        <div class="property-value">Professional Scrum Master I (2022)</div>
+                    </div>
+                    <div class="property-row">
+                        <div class="property-label">▪</div>
+                        <div class="property-value">JavaScript Algorithms and Data Structures (2021)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills Tab -->
+            <div class="tab-content" id="skills">
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <div class="skill-category-title">Programming Languages</div>
+                        <ul class="skill-list">
+                            <li>JavaScript / TypeScript</li>
+                            <li>Python</li>
+                            <li>Java</li>
+                            <li>C#</li>
+                            <li>SQL</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category">
+                        <div class="skill-category-title">Frontend</div>
+                        <ul class="skill-list">
+                            <li>React</li>
+                            <li>Vue.js</li>
+                            <li>HTML5 / CSS3</li>
+                            <li>Tailwind CSS</li>
+                            <li>Responsive Design</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category">
+                        <div class="skill-category-title">Backend</div>
+                        <ul class="skill-list">
+                            <li>Node.js</li>
+                            <li>Express</li>
+                            <li>Django</li>
+                            <li>RESTful APIs</li>
+                            <li>GraphQL</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category">
+                        <div class="skill-category-title">Database & Tools</div>
+                        <ul class="skill-list">
+                            <li>PostgreSQL</li>
+                            <li>MongoDB</li>
+                            <li>Git / GitHub</li>
+                            <li>Docker</li>
+                            <li>AWS</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category">
+                        <div class="skill-category-title">Soft Skills</div>
+                        <ul class="skill-list">
+                            <li>Team Collaboration</li>
+                            <li>Problem Solving</li>
+                            <li>Communication</li>
+                            <li>Agile / Scrum</li>
+                            <li>Code Review</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category">
+                        <div class="skill-category-title">Other</div>
+                        <ul class="skill-list">
+                            <li>CI/CD</li>
+                            <li>Testing (Jest, Pytest)</li>
+                            <li>Linux</li>
+                            <li>Microservices</li>
+                            <li>API Design</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects Tab -->
+            <div class="tab-content" id="projects">
+                <div class="project-item">
+                    <div class="item-title">E-Commerce Platform</div>
+                    <div class="item-subtitle">Full-Stack Web Application</div>
+                    <div class="item-date">2023</div>
+                    <div class="item-description">
+                        Built a complete e-commerce platform with user authentication, product catalog, shopping cart, and payment integration.<br>
+                        <strong>Tech Stack:</strong> React, Node.js, PostgreSQL, Stripe API
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="item-title">Task Management System</div>
+                    <div class="item-subtitle">Productivity Application</div>
+                    <div class="item-date">2022</div>
+                    <div class="item-description">
+                        Developed a collaborative task management system with real-time updates and team features.<br>
+                        <strong>Tech Stack:</strong> Vue.js, Express, MongoDB, Socket.io
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="item-title">Weather Dashboard</div>
+                    <div class="item-subtitle">Data Visualization Project</div>
+                    <div class="item-date">2021</div>
+                    <div class="item-description">
+                        Created an interactive weather dashboard with charts and forecasts using external APIs.<br>
+                        <strong>Tech Stack:</strong> JavaScript, Chart.js, OpenWeather API
+                    </div>
+                </div>
+            </div>
+
+            </div><!-- end tab-panel-border -->
+
+            <div class="button-container">
+                <button>OK</button>
+                <button>Cancel</button>
+                <button>Apply</button>
+            </div>
         </div>
     </div>
 </body>

@@ -43,17 +43,32 @@ function openWindow(url) {
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
             const title = doc.querySelector('title').innerText;
-            const body = doc.querySelector('.window-body').innerHTML;
+            const sourceBody = doc.querySelector('.window-body');
+            const body = sourceBody.innerHTML;
 
             titleBarText.innerText = title;
             windowBody.innerHTML = body;
+
+            // Copy inline style from source (e.g. padding:0)
+            if (sourceBody.getAttribute('style')) {
+                windowBody.setAttribute('style', sourceBody.getAttribute('style'));
+            }
+
+            // If this page has tabs, wire up tab switching
+            initTabs(windowBody);
+
+            // Resize the window to fit the properties dialog
+            if (windowBody.querySelector('.tabs-container')) {
+                windowDiv.style.width = '480px';
+                windowDiv.style.height = '460px';
+            }
         });
 
     windowDiv.appendChild(titleBar);
     windowDiv.appendChild(windowBody);
 
-    const x = Math.random() * (window.innerWidth - 400);
-    const y = Math.random() * (window.innerHeight - 300);
+    const x = Math.random() * (window.innerWidth - 480);
+    const y = Math.random() * (window.innerHeight - 460);
 
     windowDiv.style.left = x + 'px';
     windowDiv.style.top = y + 'px';
@@ -116,6 +131,23 @@ function openWindow(url) {
 
             inertia: true
         });
+}
+
+function initTabs(container) {
+    const tabs = container.querySelectorAll('.tab');
+    const tabContents = container.querySelectorAll('.tab-content');
+    if (!tabs.length) return;
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tabContents.forEach(tc => tc.classList.remove('active'));
+
+            tab.classList.add('active');
+            const tabId = tab.getAttribute('data-tab');
+            container.querySelector('#' + tabId).classList.add('active');
+        });
+    });
 }
 
 function dragMoveListener (event) {
