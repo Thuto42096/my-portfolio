@@ -282,3 +282,116 @@ body {
     font-size: 11px;
     color: #666;
 }
+
+/* ── Projects Explorer (folder view) ── */
+
+.explorer-toolbar {
+    background: #ffffff;
+    border: 1px solid #808080;
+    padding: 3px 6px;
+    font-size: 11px;
+    color: #000;
+    margin-bottom: 8px;
+    flex-shrink: 0;
+}
+
+.folder-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px;
+    background: #ffffff;
+    border: 1px solid #808080;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    align-content: flex-start;
+}
+
+.folder-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px;
+    padding: 6px;
+    cursor: pointer;
+    text-align: center;
+    border: 1px solid transparent;
+}
+
+.folder-icon:hover {
+    background: #000080;
+    color: #ffffff;
+    border: 1px dotted #000;
+}
+
+.folder-icon img {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 4px;
+}
+
+.folder-icon span {
+    font-size: 10px;
+    word-wrap: break-word;
+    line-height: 1.2;
+}
+
+/* ── Project detail window (child window) ── */
+
+.detail-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 8px;
+    background: #ffffff;
+    border: 1px solid #808080;
+}
+
+.detail-icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+}
+
+.detail-title {
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.detail-subtitle {
+    font-size: 11px;
+    color: #000080;
+    font-style: italic;
+}
+
+.detail-body {
+    padding: 0;
+}
+
+.detail-section {
+    margin-bottom: 10px;
+    padding: 8px;
+    background: #ffffff;
+    border: 1px solid #808080;
+}
+
+.detail-section-title {
+    font-weight: bold;
+    font-size: 11px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #808080;
+    padding-bottom: 3px;
+}
+
+.detail-section p {
+    margin: 4px 0 0 0;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.detail-section a {
+    color: #000080;
+    text-decoration: underline;
+    font-size: 11px;
+}

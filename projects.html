@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Projects</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="window">
@@ -17,12 +17,96 @@
             </div>
         </div>
         <div class="window-body">
-            <h1>My Projects</h1>
-            <ul>
-                <li><a href="#" target="_blank">Project 1</a></li>
-                <li><a href="#" target="_blank">Project 2</a></li>
-                <li><a href="#" target="_blank">Project 3</a></li>
-            </ul>
+            <div class="explorer-toolbar">
+                <span>📁 C:\Users\You\Projects</span>
+            </div>
+            <div class="folder-grid">
+                <div class="folder-icon" data-project="project1">
+                    <img src="https://win98icons.alexmeub.com/icons/png/directory_closed-0.png" alt="Folder">
+                    <span>E-Commerce Platform</span>
+                </div>
+                <div class="folder-icon" data-project="project2">
+                    <img src="https://win98icons.alexmeub.com/icons/png/directory_closed-0.png" alt="Folder">
+                    <span>Task Manager</span>
+                </div>
+                <div class="folder-icon" data-project="project3">
+                    <img src="https://win98icons.alexmeub.com/icons/png/directory_closed-0.png" alt="Folder">
+                    <span>Weather Dashboard</span>
+                </div>
+            </div>
+
+            <!-- Hidden project details (opened as child windows) -->
+            <div class="project-detail" id="project1" style="display:none;">
+                <div class="detail-header">
+                    <img src="https://win98icons.alexmeub.com/icons/png/directory_open-0.png" alt="Folder" class="detail-icon">
+                    <div>
+                        <div class="detail-title">E-Commerce Platform</div>
+                        <div class="detail-subtitle">Full-Stack Web Application</div>
+                    </div>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-section">
+                        <div class="detail-section-title">Description</div>
+                        <p>Built a complete e-commerce platform with user authentication, product catalog, shopping cart, and payment integration.</p>
+                    </div>
+                    <div class="detail-section">
+                        <div class="detail-section-title">Tech Stack</div>
+                        <p>React, Node.js, PostgreSQL, Stripe API</p>
+                    </div>
+                    <div class="detail-section">
+                        <div class="detail-section-title">Links</div>
+                        <p><a href="#">🌐 Live Demo</a> &nbsp; <a href="#">📂 GitHub Repo</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-detail" id="project2" style="display:none;">
+                <div class="detail-header">
+                    <img src="https://win98icons.alexmeub.com/icons/png/directory_open-0.png" alt="Folder" class="detail-icon">
+                    <div>
+                        <div class="detail-title">Task Manager</div>
+                        <div class="detail-subtitle">Productivity Application</div>
+                    </div>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-section">
+                        <div class="detail-section-title">Description</div>
+                        <p>Developed a collaborative task management system with real-time updates and team features.</p>
+                    </div>
+                    <div class="detail-section">
+                        <div class="detail-section-title">Tech Stack</div>
+                        <p>Vue.js, Express, MongoDB, Socket.io</p>
+                    </div>
+                    <div class="detail-section">
+                        <div class="detail-section-title">Links</div>
+                        <p><a href="#">🌐 Live Demo</a> &nbsp; <a href="#">📂 GitHub Repo</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-detail" id="project3" style="display:none;">
+                <div class="detail-header">
+                    <img src="https://win98icons.alexmeub.com/icons/png/directory_open-0.png" alt="Folder" class="detail-icon">
+                    <div>
+                        <div class="detail-title">Weather Dashboard</div>
+                        <div class="detail-subtitle">Data Visualization Project</div>
+                    </div>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-section">
+                        <div class="detail-section-title">Description</div>
+                        <p>Created an interactive weather dashboard with charts and forecasts using external APIs.</p>
+                    </div>
+                    <div class="detail-section">
+                        <div class="detail-section-title">Tech Stack</div>
+                        <p>JavaScript, Chart.js, OpenWeather API</p>
+                    </div>
+                    <div class="detail-section">
+                        <div class="detail-section-title">Links</div>
+                        <p><a href="#">🌐 Live Demo</a> &nbsp; <a href="#">📂 GitHub Repo</a></p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

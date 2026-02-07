@@ -62,6 +62,9 @@ function openWindow(url) {
                 windowDiv.style.width = '480px';
                 windowDiv.style.height = '460px';
             }
+
+            // If this page has project folders, wire up double-click to open detail windows
+            initProjectFolders(windowBody);
         });
 
     windowDiv.appendChild(titleBar);
@@ -148,6 +151,108 @@ function initTabs(container) {
             container.querySelector('#' + tabId).classList.add('active');
         });
     });
+}
+
+function initProjectFolders(container) {
+    const folders = container.querySelectorAll('.folder-icon');
+    if (!folders.length) return;
+
+    folders.forEach(folder => {
+        folder.addEventListener('dblclick', () => {
+            const projectId = folder.getAttribute('data-project');
+            const detail = container.querySelector('#' + projectId);
+            if (!detail) return;
+
+            const projectName = folder.querySelector('span').textContent;
+            openProjectDetail(projectName, detail.innerHTML);
+        });
+    });
+}
+
+function openProjectDetail(name, contentHTML) {
+    const windowDiv = document.createElement('div');
+    windowDiv.className = 'window';
+    windowDiv.style.width = '350px';
+    windowDiv.style.height = '320px';
+
+    const titleBar = document.createElement('div');
+    titleBar.className = 'title-bar';
+
+    const titleBarText = document.createElement('div');
+    titleBarText.className = 'title-bar-text';
+    titleBarText.innerText = name;
+
+    const titleBarControls = document.createElement('div');
+    titleBarControls.className = 'title-bar-controls';
+
+    const minimizeButton = document.createElement('button');
+    minimizeButton.setAttribute('aria-label', 'Minimize');
+
+    const maximizeButton = document.createElement('button');
+    maximizeButton.setAttribute('aria-label', 'Maximize');
+
+    const closeButton = document.createElement('button');
+    closeButton.setAttribute('aria-label', 'Close');
+    closeButton.addEventListener('click', () => {
+        windowDiv.remove();
+    });
+
+    titleBarControls.appendChild(minimizeButton);
+    titleBarControls.appendChild(maximizeButton);
+    titleBarControls.appendChild(closeButton);
+
+    titleBar.appendChild(titleBarText);
+    titleBar.appendChild(titleBarControls);
+
+    const windowBody = document.createElement('div');
+    windowBody.className = 'window-body';
+    windowBody.innerHTML = contentHTML;
+
+    windowDiv.appendChild(titleBar);
+    windowDiv.appendChild(windowBody);
+
+    const x = Math.random() * (window.innerWidth - 350);
+    const y = Math.random() * (window.innerHeight - 320);
+    windowDiv.style.left = x + 'px';
+    windowDiv.style.top = y + 'px';
+
+    document.body.appendChild(windowDiv);
+
+    interact(windowDiv)
+        .draggable({
+            inertia: true,
+            modifiers: [
+                interact.modifiers.restrictRect({
+                    restriction: 'parent',
+                    endOnly: true
+                })
+            ],
+            autoScroll: true,
+            listeners: {
+                move: dragMoveListener,
+            }
+        })
+        .resizable({
+            edges: { left: true, right: true, bottom: true, top: true },
+            listeners: {
+                move (event) {
+                    let x = (parseFloat(event.target.getAttribute('data-x')) || 0)
+                    let y = (parseFloat(event.target.getAttribute('data-y')) || 0)
+                    event.target.style.width = event.rect.width + 'px'
+                    event.target.style.height = event.rect.height + 'px'
+                    x += event.deltaRect.left
+                    y += event.deltaRect.top
+                    event.target.style.transform = 'translate(' + x + 'px,' + y + 'px)'
+                    event.target.setAttribute('data-x', x)
+                    event.target.setAttribute('data-y', y)
+                }
+            },
+            modifiers: [
+                interact.modifiers.restrictEdges({ outer: 'parent' }),
+                interact.modifiers.restrictSize({ min: { width: 100, height: 50 } })
+            ],
+            inertia: true
+        });
 }
 
 function dragMoveListener (event) {
