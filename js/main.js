@@ -4,6 +4,31 @@ const trashIcon = document.getElementById('trash-icon');
 const startButton = document.getElementById('start-button');
 const startMenu = document.getElementById('start-menu');
 
+// ── Boot Sequence ──
+
+const bootScreen = document.getElementById('boot-screen');
+const bootProgressBar = document.getElementById('boot-progress-bar');
+
+(function runBootSequence() {
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += Math.random() * 15 + 5;
+        if (progress >= 100) {
+            progress = 100;
+            clearInterval(interval);
+            // Hold at 100% briefly, then fade out
+            setTimeout(() => {
+                bootScreen.classList.add('fade-out');
+                // Remove from DOM after fade
+                setTimeout(() => {
+                    bootScreen.remove();
+                }, 800);
+            }, 400);
+        }
+        bootProgressBar.style.width = progress + '%';
+    }, 300);
+})();
+
 function openWindow(url) {
     const windowDiv = document.createElement('div');
     windowDiv.className = 'window';
