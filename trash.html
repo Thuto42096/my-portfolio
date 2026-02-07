@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trash</title>
-    <link rel="stylesheet" href="../style.css">
+    <title>Recycle Bin</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="window">
         <div class="title-bar">
-            <div class="title-bar-text">Trash</div>
+            <div class="title-bar-text">Recycle Bin</div>
             <div class="title-bar-controls">
                 <button aria-label="Minimize"></button>
                 <button aria-label="Maximize"></button>
@@ -17,12 +17,96 @@
             </div>
         </div>
         <div class="window-body">
-            <h1>Trash</h1>
-            <p>These are some of my unfinished projects.</p>
-            <ul>
-                <li>Project A</li>
-                <li>Project B</li>
-            </ul>
+            <div class="explorer-toolbar">
+                <span>🗑️ C:\Recycle Bin</span>
+            </div>
+            <div class="folder-grid">
+                <div class="folder-icon" data-trash="trash1">
+                    <img src="https://win98icons.alexmeub.com/icons/png/notepad-2.png" alt="File">
+                    <span>Chat App.txt</span>
+                </div>
+                <div class="folder-icon" data-trash="trash2">
+                    <img src="https://win98icons.alexmeub.com/icons/png/file_lines-0.png" alt="File">
+                    <span>Blog Engine.doc</span>
+                </div>
+                <div class="folder-icon" data-trash="trash3">
+                    <img src="https://win98icons.alexmeub.com/icons/png/html-1.png" alt="File">
+                    <span>Social Media Clone.htm</span>
+                </div>
+            </div>
+
+            <!-- Hidden file details (opened as child windows) -->
+            <div class="trash-detail" id="trash1" style="display:none;">
+                <div class="detail-header">
+                    <img src="https://win98icons.alexmeub.com/icons/png/notepad-2.png" alt="File" class="detail-icon">
+                    <div>
+                        <div class="detail-title">Chat App.txt</div>
+                        <div class="detail-subtitle">Abandoned Project</div>
+                    </div>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-section">
+                        <div class="detail-section-title">Description</div>
+                        <p>A real-time chat application with rooms and direct messaging. Got the WebSocket connection working but abandoned it mid-way.</p>
+                    </div>
+                    <div class="detail-section">
+                        <div class="detail-section-title">Tech Stack</div>
+                        <p>React, Socket.io, Node.js, Redis</p>
+                    </div>
+                    <div class="detail-section">
+                        <div class="detail-section-title">Reason Deleted</div>
+                        <p>Scope creep — kept adding features instead of shipping. Learned to start with an MVP next time.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trash-detail" id="trash2" style="display:none;">
+                <div class="detail-header">
+                    <img src="https://win98icons.alexmeub.com/icons/png/file_lines-0.png" alt="File" class="detail-icon">
+                    <div>
+                        <div class="detail-title">Blog Engine.doc</div>
+                        <div class="detail-subtitle">Incomplete Project</div>
+                    </div>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-section">
+                        <div class="detail-section-title">Description</div>
+                        <p>A custom blogging platform with markdown support and a CMS admin panel. The backend was 80% done but the frontend never materialized.</p>
+                    </div>
+                    <div class="detail-section">
+                        <div class="detail-section-title">Tech Stack</div>
+                        <p>Python, Django, PostgreSQL, Markdown</p>
+                    </div>
+                    <div class="detail-section">
+                        <div class="detail-section-title">Reason Deleted</div>
+                        <p>Realized existing solutions (Ghost, Hugo) were better. Learned a lot about Django though.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trash-detail" id="trash3" style="display:none;">
+                <div class="detail-header">
+                    <img src="https://win98icons.alexmeub.com/icons/png/html-1.png" alt="File" class="detail-icon">
+                    <div>
+                        <div class="detail-title">Social Media Clone.htm</div>
+                        <div class="detail-subtitle">Scrapped Prototype</div>
+                    </div>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-section">
+                        <div class="detail-section-title">Description</div>
+                        <p>An attempt at building a social media platform with posts, likes, and followers. Had authentication and basic CRUD working.</p>
+                    </div>
+                    <div class="detail-section">
+                        <div class="detail-section-title">Tech Stack</div>
+                        <p>Next.js, Prisma, MySQL, Tailwind CSS</p>
+                    </div>
+                    <div class="detail-section">
+                        <div class="detail-section-title">Reason Deleted</div>
+                        <p>Too ambitious for a solo project. Pivoted to smaller, more focused apps instead.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

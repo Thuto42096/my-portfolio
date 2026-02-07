@@ -1,6 +1,8 @@
 const userIcon = document.getElementById('user-icon');
 const projectsIcon = document.getElementById('projects-icon');
 const trashIcon = document.getElementById('trash-icon');
+const startButton = document.getElementById('start-button');
+const startMenu = document.getElementById('start-menu');
 
 function openWindow(url) {
     const windowDiv = document.createElement('div');
@@ -65,6 +67,9 @@ function openWindow(url) {
 
             // If this page has project folders, wire up double-click to open detail windows
             initProjectFolders(windowBody);
+
+            // If this page has trash files, wire up double-click to open detail windows
+            initTrashFiles(windowBody);
         });
 
     windowDiv.appendChild(titleBar);
@@ -165,6 +170,22 @@ function initProjectFolders(container) {
 
             const projectName = folder.querySelector('span').textContent;
             openProjectDetail(projectName, detail.innerHTML);
+        });
+    });
+}
+
+function initTrashFiles(container) {
+    const files = container.querySelectorAll('[data-trash]');
+    if (!files.length) return;
+
+    files.forEach(file => {
+        file.addEventListener('dblclick', () => {
+            const trashId = file.getAttribute('data-trash');
+            const detail = container.querySelector('#' + trashId);
+            if (!detail) return;
+
+            const fileName = file.querySelector('span').textContent;
+            openProjectDetail(fileName, detail.innerHTML);
         });
     });
 }
@@ -279,4 +300,30 @@ projectsIcon.addEventListener('click', () => {
 
 trashIcon.addEventListener('click', () => {
     openWindow('trash.html');
+});
+
+// ── Start Menu ──
+
+startButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    startMenu.classList.toggle('open');
+    startButton.classList.toggle('active');
+});
+
+// Menu item clicks open the corresponding window
+document.querySelectorAll('.start-menu-item[data-url]').forEach(item => {
+    item.addEventListener('click', () => {
+        const url = item.getAttribute('data-url');
+        openWindow(url);
+        startMenu.classList.remove('open');
+        startButton.classList.remove('active');
+    });
+});
+
+// Close menu when clicking anywhere else
+document.addEventListener('click', (e) => {
+    if (!startMenu.contains(e.target) && !startButton.contains(e.target)) {
+        startMenu.classList.remove('open');
+        startButton.classList.remove('active');
+    }
 });
