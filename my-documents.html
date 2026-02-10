@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Documents</title>
+</head>
+<body>
+    <div class="window-body">
+        <div class="explorer-toolbar">
+            <span>📁 C:\My Documents</span>
+        </div>
+        <div class="folder-grid">
+            <div class="folder-icon" data-doc="doc-photo">
+                <img src="https://win98icons.alexmeub.com/icons/png/camera3_network-2.png" alt="Photo">
+                <span>photo.jpg</span>
+            </div>
+            <div class="folder-icon" data-doc="doc-video">
+                <img src="https://win98icons.alexmeub.com/icons/png/camera3_vid-4.png" alt="Video">
+                <span>intro.mp4</span>
+            </div>
+        </div>
+
+        <!-- Hidden detail: Photo viewer -->
+        <div id="doc-photo" style="display:none;">
+            <div class="doc-viewer">
+                <img src="assets/photo.jpg" alt="Photo of Thuto R" class="doc-photo-img">
+                <div class="doc-caption">photo.jpg — Thuto R</div>
+            </div>
+        </div>
+
+        <!-- Hidden detail: Video player -->
+        <div id="doc-video" style="display:none;">
+            <div class="doc-viewer">
+                <video class="doc-video-player" controls>
+                    <source src="assets/video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="doc-caption">intro.mp4 — Short Introduction</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

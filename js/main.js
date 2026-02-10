@@ -1,6 +1,9 @@
 const userIcon = document.getElementById('user-icon');
 const projectsIcon = document.getElementById('projects-icon');
 const trashIcon = document.getElementById('trash-icon');
+const mydocsIcon = document.getElementById('mydocs-icon');
+const notepadIcon = document.getElementById('notepad-icon');
+const ieIcon = document.getElementById('ie-icon');
 const startButton = document.getElementById('start-button');
 const startMenu = document.getElementById('start-menu');
 
@@ -28,6 +31,22 @@ const bootProgressBar = document.getElementById('boot-progress-bar');
         bootProgressBar.style.width = progress + '%';
     }, 300);
 })();
+
+// ── Taskbar Clock ──
+
+const clockEl = document.getElementById('clock-time');
+
+function updateClock() {
+    const now = new Date();
+    let hours = now.getHours();
+    const mins = now.getMinutes().toString().padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12 || 12;
+    clockEl.textContent = hours + ':' + mins + ' ' + ampm;
+}
+
+updateClock();
+setInterval(updateClock, 1000);
 
 function openWindow(url) {
     const windowDiv = document.createElement('div');
@@ -95,6 +114,15 @@ function openWindow(url) {
 
             // If this page has trash files, wire up double-click to open detail windows
             initTrashFiles(windowBody);
+
+            // If this page has a DOS terminal, wire up command input
+            initDosTerminal(windowBody);
+
+            // If this page has document files, wire up double-click to open viewers
+            initDocFiles(windowBody);
+
+            // If this page has a minesweeper board, initialize the game
+            initMinesweeper(windowBody);
         });
 
     windowDiv.appendChild(titleBar);
@@ -215,6 +243,206 @@ function initTrashFiles(container) {
     });
 }
 
+function initDocFiles(container) {
+    const files = container.querySelectorAll('[data-doc]');
+    if (!files.length) return;
+
+    files.forEach(file => {
+        file.addEventListener('dblclick', () => {
+            const docId = file.getAttribute('data-doc');
+            const detail = container.querySelector('#' + docId);
+            if (!detail) return;
+
+            const fileName = file.querySelector('span').textContent;
+            openProjectDetail(fileName, detail.innerHTML);
+        });
+    });
+}
+
+function initMinesweeper(container) {
+    const board = container.querySelector('#mine-board');
+    if (!board) return;
+
+    const ROWS = 9, COLS = 9, MINES = 10;
+    let cells = [], mineSet = new Set(), revealed = 0, gameOver = false, firstClick = true;
+    let timerInterval = null, seconds = 0;
+    const faceBtn = container.querySelector('#mine-face');
+    const mineCounter = container.querySelector('#mine-count');
+    const timerDisplay = container.querySelector('#mine-timer');
+    let flagCount = 0;
+
+    function pad3(n) { return String(n).padStart(3, '0'); }
+
+    function placeMines(excludeR, excludeC) {
+        mineSet.clear();
+        while (mineSet.size < MINES) {
+            const r = Math.floor(Math.random() * ROWS);
+            const c = Math.floor(Math.random() * COLS);
+            if (r === excludeR && c === excludeC) continue;
+            mineSet.add(r * COLS + c);
+        }
+    }
+
+    function countAdj(r, c) {
+        let count = 0;
+        for (let dr = -1; dr <= 1; dr++) {
+            for (let dc = -1; dc <= 1; dc++) {
+                if (dr === 0 && dc === 0) continue;
+                const nr = r + dr, nc = c + dc;
+                if (nr >= 0 && nr < ROWS && nc >= 0 && nc < COLS && mineSet.has(nr * COLS + nc)) count++;
+            }
+        }
+        return count;
+    }
+
+    function reveal(r, c) {
+        if (r < 0 || r >= ROWS || c < 0 || c >= COLS) return;
+        const cell = cells[r][c];
+        if (cell.revealed || cell.flagged) return;
+        cell.revealed = true;
+        cell.el.classList.add('revealed');
+        revealed++;
+        const adj = countAdj(r, c);
+        if (mineSet.has(r * COLS + c)) {
+            cell.el.textContent = '💣';
+            cell.el.classList.add('mine-hit');
+            return;
+        }
+        if (adj > 0) {
+            cell.el.textContent = adj;
+            cell.el.setAttribute('data-num', adj);
+        } else {
+            for (let dr = -1; dr <= 1; dr++)
+                for (let dc = -1; dc <= 1; dc++)
+                    if (dr !== 0 || dc !== 0) reveal(r + dr, c + dc);
+        }
+    }
+
+    function endGame(won) {
+        gameOver = true;
+        clearInterval(timerInterval);
+        faceBtn.textContent = won ? '😎' : '😵';
+        if (!won) {
+            mineSet.forEach(idx => {
+                const r = Math.floor(idx / COLS), c = idx % COLS;
+                if (!cells[r][c].revealed) {
+                    cells[r][c].el.textContent = '💣';
+                    cells[r][c].el.classList.add('revealed');
+                }
+            });
+        }
+    }
+
+    function buildBoard() {
+        board.innerHTML = '';
+        cells = [];
+        revealed = 0; gameOver = false; firstClick = true; flagCount = 0;
+        clearInterval(timerInterval); seconds = 0;
+        timerDisplay.textContent = '000';
+        mineCounter.textContent = pad3(MINES);
+        faceBtn.textContent = '🙂';
+
+        for (let r = 0; r < ROWS; r++) {
+            cells[r] = [];
+            for (let c = 0; c < COLS; c++) {
+                const el = document.createElement('div');
+                el.className = 'mine-cell';
+                const cellObj = { el, revealed: false, flagged: false };
+                cells[r][c] = cellObj;
+
+                el.addEventListener('click', () => {
+                    if (gameOver || cellObj.flagged) return;
+                    if (firstClick) {
+                        firstClick = false;
+                        placeMines(r, c);
+                        timerInterval = setInterval(() => {
+                            seconds++;
+                            timerDisplay.textContent = pad3(Math.min(seconds, 999));
+                        }, 1000);
+                    }
+                    if (mineSet.has(r * COLS + c)) {
+                        reveal(r, c);
+                        endGame(false);
+                    } else {
+                        reveal(r, c);
+                        if (revealed === ROWS * COLS - MINES) endGame(true);
+                    }
+                });
+
+                el.addEventListener('contextmenu', (e) => {
+                    e.preventDefault();
+                    if (gameOver || cellObj.revealed) return;
+                    cellObj.flagged = !cellObj.flagged;
+                    el.textContent = cellObj.flagged ? '🚩' : '';
+                    flagCount += cellObj.flagged ? 1 : -1;
+                    mineCounter.textContent = pad3(MINES - flagCount);
+                });
+
+                board.appendChild(el);
+            }
+        }
+    }
+
+    faceBtn.addEventListener('click', buildBoard);
+    buildBoard();
+}
+
+function initDosTerminal(container) {
+    const input = container.querySelector('.dos-input');
+    const output = container.querySelector('.dos-output');
+    if (!input || !output) return;
+
+    const commands = {
+        help: 'Available commands:\n  HELP      - Show this help message\n  ABOUT     - About me\n  SKILLS    - My technical skills\n  PROJECTS  - My projects\n  CONTACT   - How to reach me\n  EDUCATION - My education\n  CLS       - Clear screen\n  DIR       - List directory\n  VER       - Show version',
+        about: 'Thuto R\n─────────────────────\nI am a developer who loves building things.\nThis portfolio is styled after Windows 98\nbecause retro UIs are awesome.',
+        skills: 'Technical Skills:\n─────────────────────\n• Programming: JavaScript, Python, Java\n• Frontend: HTML, CSS, React\n• Backend: Node.js, Express\n• Database: MongoDB, PostgreSQL\n• Tools: Git, VS Code, Docker',
+        projects: 'My Projects:\n─────────────────────\n📁 E-Commerce Platform\n📁 Task Manager\n📁 Weather Dashboard\n\nDouble-click the My Projects folder\non the desktop for more details.',
+        contact: 'Contact Info:\n─────────────────────\n📧 Email: thuto@example.com\n🔗 GitHub: github.com/thuto-r\n🔗 LinkedIn: linkedin.com/in/thuto-r\n🐦 Twitter: @thuto_r',
+        education: 'Education:\n─────────────────────\n🎓 Bachelor of Science in Computer Science\n   University of Example, 2020-2024',
+        cls: '__CLEAR__',
+        dir: ' Volume in drive C has no label.\n Volume Serial Number is 1337-CAFE\n\n Directory of C:\\PORTFOLIO\n\n.              <DIR>     02-10-2026  12:00a\n..             <DIR>     02-10-2026  12:00a\nABOUT    TXT         512  02-10-2026  12:00a\nSKILLS   TXT         256  02-10-2026  12:00a\nPROJECTS DIR       4,096  02-10-2026  12:00a\nCONTACT  TXT         128  02-10-2026  12:00a\n        4 file(s)        4,992 bytes\n        2 dir(s)   640,000,000 bytes free',
+        ver: '\nWindows 98 [Version 4.10.1998]\nPortfolio Edition'
+    };
+
+    input.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter') return;
+        const cmd = input.value.trim().toLowerCase();
+        input.value = '';
+
+        // Echo the command
+        const echoLine = document.createElement('div');
+        echoLine.textContent = 'C:\\PORTFOLIO>' + cmd;
+        output.appendChild(echoLine);
+
+        if (cmd === '') return;
+
+        const response = commands[cmd];
+        const responseLine = document.createElement('div');
+
+        if (response === '__CLEAR__') {
+            output.innerHTML = '';
+        } else if (response) {
+            responseLine.textContent = response;
+            output.appendChild(responseLine);
+        } else {
+            responseLine.textContent = "Bad command or file name: '" + cmd + "'\nType 'help' for available commands.";
+            output.appendChild(responseLine);
+        }
+
+        const blankLine = document.createElement('div');
+        blankLine.innerHTML = '&nbsp;';
+        output.appendChild(blankLine);
+
+        // Scroll to bottom
+        output.scrollTop = output.scrollHeight;
+    });
+
+    // Focus input when clicking anywhere in the terminal
+    container.querySelector('.dos-terminal').addEventListener('click', () => {
+        input.focus();
+    });
+}
+
 function openProjectDetail(name, contentHTML) {
     const windowDiv = document.createElement('div');
     windowDiv.className = 'window';
@@ -325,6 +553,22 @@ projectsIcon.addEventListener('click', () => {
 
 trashIcon.addEventListener('click', () => {
     openWindow('trash.html');
+});
+
+notepadIcon.addEventListener('click', () => {
+    openWindow('notepad.html');
+});
+
+ieIcon.addEventListener('click', () => {
+    openWindow('internet-explorer.html');
+});
+
+mydocsIcon.addEventListener('click', () => {
+    openWindow('my-documents.html');
+});
+
+document.getElementById('taskbar-name').addEventListener('click', () => {
+    openWindow('user.html');
 });
 
 // ── Start Menu ──
