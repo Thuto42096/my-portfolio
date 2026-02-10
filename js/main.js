@@ -123,6 +123,15 @@ function openWindow(url) {
 
             // If this page has a minesweeper board, initialize the game
             initMinesweeper(windowBody);
+
+            // If this page has links that open portfolio windows, wire them up
+            windowBody.querySelectorAll('[data-open-window]').forEach(link => {
+                const eventType = link.closest('.folder-grid') ? 'dblclick' : 'click';
+                link.addEventListener(eventType, (e) => {
+                    e.preventDefault();
+                    openWindow(link.getAttribute('data-open-window'));
+                });
+            });
         });
 
     windowDiv.appendChild(titleBar);
@@ -393,14 +402,15 @@ function initDosTerminal(container) {
     if (!input || !output) return;
 
     const commands = {
-        help: 'Available commands:\n  HELP      - Show this help message\n  ABOUT     - About me\n  SKILLS    - My technical skills\n  PROJECTS  - My projects\n  CONTACT   - How to reach me\n  EDUCATION - My education\n  CLS       - Clear screen\n  DIR       - List directory\n  VER       - Show version',
+        help: 'Available commands:\n  HELP      - Show this help message\n  ABOUT     - About me\n  SKILLS    - My technical skills\n  PROJECTS  - My projects\n  RESUME    - My resume\n  CONTACT   - How to reach me\n  EDUCATION - My education\n  CLS       - Clear screen\n  DIR       - List directory\n  VER       - Show version',
         about: 'Thuto Ratlhahane\n─────────────────────\nFull Stack Developer | Blockchain Enthusiast\n\nSoftware Engineer transitioning into Full Stack\nWeb Development with a strong foundation in OOP\nand backend systems. Expanding into containerization,\nCI/CD pipelines, and blockchain development.\n\nPassionate about building secure, scalable, and\nproduction-ready applications.',
         skills: 'Technical Skills:\n─────────────────────\n• Languages: Python, Java, JavaScript, SQL\n• Frontend: React, React Native, HTML5/CSS3\n• Backend: SQLite3, JDBC, RESTful APIs, ORM\n• DevOps: Docker, GitLab CI, Git, CI/CD\n• Focus: Blockchain, Smart Contracts, Backend Engineering',
         projects: 'My Projects:\n─────────────────────\n📁 Pop-Ma-Dice (Web3 Dice Game)\n📁 Township Talks Space (Community Forum)\n📁 Online Store (E-Commerce Template)\n📁 TasteLocal (Food Discovery Platform)\n📁 Jangase Drive Academy (Driving School)\n📁 Ubuntu Health Vault (Medical Data)\n📁 Captain Cy (Digital Safety Guide)\n\nDouble-click the My Projects folder\non the desktop for more details.',
         contact: 'Contact Info:\n─────────────────────\n📧 Email: thuto42096@gmail.com\n🔗 GitHub: github.com/Thuto42096\n🔗 LinkedIn: linkedin.com/in/thuto-ratlhahane0101\n📍 Location: Johannesburg, South Africa',
-        education: 'Education & Learning:\n─────────────────────\n📚 Software Engineering (Self-Taught & Continuous)\n   • OOP (Python, Java)\n   • Full Stack Web Dev (React, React Native)\n   • DevOps (Docker, GitLab CI)\n\n📈 Currently Learning:\n   • Advanced blockchain development\n   • Smart contract security\n   • Scalable backend architectures',
+        resume: '__OPEN_WINDOW__resume.html',
+        education: 'Education & Learning:\n─────────────────────\n📚 NQF 6 — Software Engineering (Blockchain)\n   WeThinkCode_ (In Progress)\n\n📚 N3 — Mechanical Engineering (Obtained)\n\n📚 National Senior Certificate — Matric (Obtained)\n\n📈 Currently Learning:\n   • Advanced blockchain development\n   • Smart contract security\n   • Scalable backend architectures',
         cls: '__CLEAR__',
-        dir: ' Volume in drive C has no label.\n Volume Serial Number is 1337-CAFE\n\n Directory of C:\\PORTFOLIO\n\n.              <DIR>     02-10-2026  12:00a\n..             <DIR>     02-10-2026  12:00a\nABOUT    TXT         512  02-10-2026  12:00a\nSKILLS   TXT         256  02-10-2026  12:00a\nPROJECTS DIR       4,096  02-10-2026  12:00a\nCONTACT  TXT         128  02-10-2026  12:00a\n        4 file(s)        4,992 bytes\n        2 dir(s)   640,000,000 bytes free',
+        dir: ' Volume in drive C has no label.\n Volume Serial Number is 1337-CAFE\n\n Directory of C:\\PORTFOLIO\n\n.              <DIR>     02-10-2026  12:00a\n..             <DIR>     02-10-2026  12:00a\nABOUT    TXT         512  02-10-2026  12:00a\nSKILLS   TXT         256  02-10-2026  12:00a\nPROJECTS DIR       4,096  02-10-2026  12:00a\nRESUME   DOC       8,192  02-10-2026  12:00a\nCONTACT  TXT         128  02-10-2026  12:00a\n        5 file(s)       13,184 bytes\n        2 dir(s)   640,000,000 bytes free',
         ver: '\nWindows 98 [Version 4.10.1998]\nPortfolio Edition'
     };
 
@@ -421,6 +431,11 @@ function initDosTerminal(container) {
 
         if (response === '__CLEAR__') {
             output.innerHTML = '';
+        } else if (response && response.startsWith('__OPEN_WINDOW__')) {
+            const url = response.replace('__OPEN_WINDOW__', '');
+            openWindow(url);
+            responseLine.textContent = 'Opening ' + url + '...';
+            output.appendChild(responseLine);
         } else if (response) {
             responseLine.textContent = response;
             output.appendChild(responseLine);

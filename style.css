@@ -1073,3 +1073,161 @@ body {
 .mine-cell[data-num="6"] { color: #008080; }
 .mine-cell[data-num="7"] { color: #000000; }
 .mine-cell[data-num="8"] { color: #808080; }
+
+/* ── Resume (Word Document style) ── */
+
+.resume-toolbar {
+    background: #c0c0c0;
+    border-bottom: 1px solid #808080;
+    padding: 3px 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.resume-print-btn {
+    font-size: 11px;
+    padding: 2px 8px;
+    cursor: pointer;
+}
+
+.resume-toolbar-text {
+    font-size: 11px;
+    color: #000;
+}
+
+.resume-page {
+    background: #ffffff;
+    color: #000;
+    padding: 30px 36px;
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
+    font-family: "Pixelated MS Sans Serif", Arial, sans-serif;
+    line-height: 1.5;
+}
+
+.resume-header {
+    text-align: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #000080;
+}
+
+.resume-name {
+    margin: 0 0 2px 0;
+    font-size: 20px;
+    color: #000;
+    letter-spacing: 1px;
+}
+
+.resume-title {
+    font-size: 12px;
+    color: #000080;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.resume-contact {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 10px;
+    color: #333;
+    margin-bottom: 2px;
+}
+
+.resume-contact a {
+    color: #000080;
+    text-decoration: underline;
+    font-size: 10px;
+}
+
+.resume-section {
+    margin-bottom: 14px;
+}
+
+.resume-section-title {
+    font-size: 12px;
+    font-weight: bold;
+    color: #000080;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #808080;
+    padding-bottom: 3px;
+    margin-bottom: 8px;
+}
+
+.resume-entry {
+    margin-bottom: 10px;
+}
+
+.resume-entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.resume-entry-title {
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.resume-entry-date {
+    font-size: 10px;
+    color: #666;
+    white-space: nowrap;
+}
+
+.resume-entry-date a {
+    color: #000080;
+    text-decoration: underline;
+    font-size: 10px;
+}
+
+.resume-entry-subtitle {
+    font-size: 10px;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 2px;
+}
+
+.resume-list {
+    margin: 2px 0 0 0;
+    padding-left: 18px;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.resume-list li {
+    margin-bottom: 1px;
+}
+
+.resume-section p {
+    margin: 2px 0 0 0;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.resume-skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 16px;
+}
+
+.resume-skill-group {
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+@media print {
+    body { background: #fff; }
+    .taskbar, .desktop, .start-menu, .boot-screen, .shutdown-screen { display: none; }
+    .window { position: static; width: 100%; height: auto; border: none; box-shadow: none; }
+    .title-bar { display: none; }
+    .window-body { height: auto; overflow: visible; }
+    .resume-toolbar { display: none; }
+    .resume-page { padding: 20px; }
+}
