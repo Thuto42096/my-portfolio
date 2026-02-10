@@ -581,7 +581,8 @@ startButton.addEventListener('click', (e) => {
 
 // Menu item clicks open the corresponding window
 document.querySelectorAll('.start-menu-item[data-url]').forEach(item => {
-    item.addEventListener('click', () => {
+    item.addEventListener('click', (e) => {
+        e.stopPropagation();
         const url = item.getAttribute('data-url');
         openWindow(url);
         startMenu.classList.remove('open');
