@@ -105,8 +105,11 @@ function openWindow(url) {
 
             // Resize the window to fit the properties dialog
             if (windowBody.querySelector('.tabs-container')) {
-                windowDiv.style.width = '480px';
-                windowDiv.style.height = '460px';
+                const isMobile = window.innerWidth <= 768;
+                const desiredWidth = isMobile ? Math.min(480, window.innerWidth - 20) : 480;
+                const desiredHeight = isMobile ? Math.min(460, window.innerHeight - 60) : 460;
+                windowDiv.style.width = desiredWidth + 'px';
+                windowDiv.style.height = desiredHeight + 'px';
             }
 
             // If this page has project folders, wire up double-click to open detail windows
@@ -137,8 +140,21 @@ function openWindow(url) {
     windowDiv.appendChild(titleBar);
     windowDiv.appendChild(windowBody);
 
-    const x = Math.random() * (window.innerWidth - 480);
-    const y = Math.random() * (window.innerHeight - 460);
+    // Responsive window sizing for mobile
+    const isMobile = window.innerWidth <= 768;
+    const maxWidth = isMobile ? window.innerWidth - 20 : 480;
+    const maxHeight = isMobile ? window.innerHeight - 60 : 460;
+
+    // Set initial window size (will be adjusted after content loads)
+    windowDiv.style.width = Math.min(400, maxWidth) + 'px';
+    windowDiv.style.height = Math.min(300, maxHeight) + 'px';
+    windowDiv.style.maxWidth = maxWidth + 'px';
+    windowDiv.style.maxHeight = maxHeight + 'px';
+
+    const windowWidth = parseInt(windowDiv.style.width);
+    const windowHeight = parseInt(windowDiv.style.height);
+    const x = isMobile ? 10 : Math.max(0, Math.random() * (window.innerWidth - windowWidth));
+    const y = isMobile ? 10 : Math.max(0, Math.random() * (window.innerHeight - windowHeight));
 
     windowDiv.style.left = x + 'px';
     windowDiv.style.top = y + 'px';
@@ -169,7 +185,7 @@ function openWindow(url) {
             edges: { left: true, right: true, bottom: true, top: true },
 
             listeners: {
-                move (event) {
+                move(event) {
                     let x = (parseFloat(event.target.getAttribute('data-x')) || 0)
                     let y = (parseFloat(event.target.getAttribute('data-y')) || 0)
 
@@ -500,8 +516,21 @@ function openProjectDetail(name, contentHTML) {
     windowDiv.appendChild(titleBar);
     windowDiv.appendChild(windowBody);
 
-    const x = Math.random() * (window.innerWidth - 350);
-    const y = Math.random() * (window.innerHeight - 320);
+    // Responsive window sizing for mobile
+    const isMobile = window.innerWidth <= 768;
+    const maxWidth = isMobile ? window.innerWidth - 20 : 350;
+    const maxHeight = isMobile ? window.innerHeight - 60 : 320;
+
+    windowDiv.style.width = Math.min(350, maxWidth) + 'px';
+    windowDiv.style.height = Math.min(320, maxHeight) + 'px';
+    windowDiv.style.maxWidth = maxWidth + 'px';
+    windowDiv.style.maxHeight = maxHeight + 'px';
+
+    const windowWidth = parseInt(windowDiv.style.width);
+    const windowHeight = parseInt(windowDiv.style.height);
+    const x = isMobile ? 10 : Math.max(0, Math.random() * (window.innerWidth - windowWidth));
+    const y = isMobile ? 10 : Math.max(0, Math.random() * (window.innerHeight - windowHeight));
+
     windowDiv.style.left = x + 'px';
     windowDiv.style.top = y + 'px';
 
@@ -524,7 +553,7 @@ function openProjectDetail(name, contentHTML) {
         .resizable({
             edges: { left: true, right: true, bottom: true, top: true },
             listeners: {
-                move (event) {
+                move(event) {
                     let x = (parseFloat(event.target.getAttribute('data-x')) || 0)
                     let y = (parseFloat(event.target.getAttribute('data-y')) || 0)
                     event.target.style.width = event.rect.width + 'px'
@@ -544,7 +573,7 @@ function openProjectDetail(name, contentHTML) {
         });
 }
 
-function dragMoveListener (event) {
+function dragMoveListener(event) {
     var target = event.target
     // keep the dragged position in the data-x/data-y attributes
     var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
