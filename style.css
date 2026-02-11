@@ -1,4 +1,13 @@
+/* ============================================================
+   Thuto R's Portfolio — Windows 98 Theme
+   ============================================================
+   A retro Windows 98-styled personal portfolio.
+   Built with 98.css, vanilla JS, and interact.js.
+   ============================================================ */
+
 @import url("https://unpkg.com/98.css");
+
+/* ── Base Reset & Globals ──────────────────────────────────── */
 
 html,
 body {
@@ -15,6 +24,8 @@ body {
     font-size: 12px;
     color: #fff;
 }
+
+/* ── Desktop Icons ─────────────────────────────────────────── */
 
 .desktop {
     display: flex;
@@ -36,6 +47,8 @@ body {
     height: 50px;
     margin-bottom: 5px;
 }
+
+/* ── Taskbar ────────────────────────────────────────────────── */
 
 .taskbar {
     position: fixed;
@@ -240,6 +253,8 @@ body {
     font-size: 11px;
     color: #000;
 }
+
+/* ── Window Chrome ──────────────────────────────────────────── */
 
 .window {
     position: absolute;
