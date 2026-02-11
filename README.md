@@ -3,7 +3,7 @@
 A retro **Windows 98-themed** personal portfolio built with vanilla HTML, CSS, and JavaScript.
 Everything runs in the browser — no frameworks, no build step.
 
-> **Live:** [https://thuto-r.dev](https://thuto-r.dev) _(update with your actual URL)_
+> **Live:** [https://thuto-r.vercel.app](https://thuto-r.vercel.app)
 
 ![Windows 98 Portfolio Screenshot](assets/photo.jpg)
 
