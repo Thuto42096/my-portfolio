@@ -1,0 +1,114 @@
+================================================================================
+                            THUTO RATLHAHANE
+                Full Stack Developer | Blockchain Enthusiast
+================================================================================
+
+CONTACT INFORMATION
+-------------------
+Email:      thuto42096@gmail.com
+Phone:      +27 65 986 6101
+Location:   Johannesburg, South Africa
+GitHub:     github.com/Thuto42096
+LinkedIn:   linkedin.com/in/thuto-ratlhahane0101
+
+
+PROFESSIONAL SUMMARY
+--------------------
+Software Engineer transitioning into Full Stack Web Development with a strong 
+foundation in Object-Oriented Programming and backend systems. Expanding into 
+containerization, CI/CD pipelines, and blockchain development. Passionate about 
+building secure, scalable, and production-ready applications. Experienced in 
+facilitating technical training and overseeing recruitment programs.
+
+
+EXPERIENCE
+----------
+Volunteer Supervisor — WeThinkCode_ x I.D.C Work Program          [Present]
+WeThinkCode_ · Johannesburg, South Africa
+  • Oversee recruitment and placement facilitators for the WeThinkCode_ x 
+    I.D.C work program
+  • Coordinate and manage program logistics, ensuring smooth onboarding of 
+    participants
+  • Liaise between stakeholders to align recruitment goals with program 
+    objectives
+
+Bootcamp Assistant (Volunteer)                                    [2 Months]
+WeThinkCode_ · Johannesburg, South Africa
+  • Facilitated coding bootcamps, training students on Python fundamental 
+    programming
+  • Guided students through core programming concepts, debugging, and 
+    problem-solving
+  • Provided one-on-one mentorship to help students build confidence in coding
+
+
+EDUCATION
+---------
+NQF 6 — Software Engineering (Blockchain Specialisation)      [In Progress]
+WeThinkCode_
+
+N3 — Mechanical Engineering                                       [Obtained]
+
+National Senior Certificate (Matric)                              [Obtained]
+
+
+TECHNICAL SKILLS
+----------------
+Languages:   Python, Java, JavaScript, SQL, TypeScript, Solidity
+Frontend:    React, React Native, HTML5, CSS3, Tailwind CSS
+Backend:     Node.js, Express, SQLite3, JDBC, RESTful APIs, Firebase, 
+             Supabase, MongoDB
+DevOps:      Docker, GitLab CI, Git, CI/CD Pipelines
+Blockchain:  Solidity, Hardhat, WalletConnect, Smart Contracts
+
+
+KEY PROJECTS
+------------
+Pop-Ma-Dice — Web3 Dice Game
+Live: https://pop-ma-dice.vercel.app
+GitHub: https://github.com/Thuto42096/Pop-Ma-Dice
+Mzansi's FIRST web3 dice game — blockchain-powered dApp with WalletConnect 
+integration and on-chain smart contracts.
+Tech: TypeScript, Solidity, Hardhat, WalletConnect
+
+Township Talks Space — Community Forum
+Live: https://kasi-lami.vercel.app
+GitHub: https://github.com/Thuto42096/township-talks-space
+Anonymous South African local forum — a safe space for township communities 
+to share and connect.
+Tech: React, TypeScript, Supabase, Tailwind CSS
+
+TasteLocal — Food Discovery Platform
+Live: https://tastekasi.vercel.app
+GitHub: https://github.com/Thuto42096/flavor-africa-connect
+South African food discovery platform with vendor dashboards, menu management, 
+and WhatsApp ordering.
+Tech: React, TypeScript, Firebase, Tailwind CSS
+
+Tap Warz — Farcaster Mini App
+Live: https://tap-warz.vercel.app
+GitHub: https://github.com/Thuto42096/tap-warz
+Two-player tapping battle game with optional ETH betting, built as a Farcaster 
+Mini App.
+Tech: Next.js, TypeScript, Tailwind CSS, MiniKit, OnchainKit
+
+Ubuntu Health Vault — Medical Data Platform
+Live: https://ubuntuhealth.vercel.app
+Health data management platform giving users control over their personal 
+medical records securely.
+
+Captain Cy — Digital Safety Guide
+Live: https://captain-cy.vercel.app
+Educational platform focused on cybersecurity awareness and digital safety 
+best practices.
+
+
+INTERESTS & FOCUS AREAS
+-----------------------
+Full Stack Web Development · Blockchain & Smart Contracts · Backend 
+Engineering · DevOps & Cloud-Native Systems · Open Source
+
+
+================================================================================
+                        Generated from my-portfolio
+================================================================================
+
