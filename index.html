@@ -4,53 +4,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Thuto R's Portfolio</title>
+
+    <!-- SEO & Meta -->
+    <title>Thuto R | Full Stack Developer Portfolio</title>
+    <meta name="description" content="Windows 98-themed portfolio of Thuto Ratlhahane — Full Stack Developer & Blockchain Enthusiast based in Johannesburg, South Africa.">
+    <meta name="author" content="Thuto Ratlhahane">
+    <meta name="keywords" content="Thuto Ratlhahane, Full Stack Developer, Blockchain, Portfolio, Software Engineer, React, TypeScript, Web3">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Thuto R | Full Stack Developer Portfolio">
+    <meta property="og:description" content="Explore the retro Windows 98-themed portfolio of Thuto Ratlhahane — projects, resume, and more.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/photo.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://win98icons.alexmeub.com/icons/png/windows-0.png">
+
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="boot-screen" id="boot-screen">
+
+    <!-- ═══════════════════════════════════════════
+         Boot Screen — Windows 98 startup animation
+         ═══════════════════════════════════════════ -->
+    <div class="boot-screen" id="boot-screen" role="status" aria-label="Loading portfolio">
         <div class="boot-content">
             <div class="boot-clouds"></div>
             <div class="boot-logo">
-                <img src="https://win98icons.alexmeub.com/icons/png/windows-0.png" alt="Windows">
+                <img src="https://win98icons.alexmeub.com/icons/png/windows-0.png" alt="Windows 98 Logo">
                 <div class="boot-title">
                     <span class="boot-windows">Microsoft</span><span class="boot-98">Windows 98</span>
                 </div>
             </div>
             <div class="boot-progress-container">
-                <div class="boot-progress-bar" id="boot-progress-bar"></div>
+                <div class="boot-progress-bar" id="boot-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
         </div>
     </div>
 
-    <div class="desktop">
-        <div class="icon" id="user-icon">
+    <!-- ═══════════════════════════════════════════
+         Desktop — Shortcut icons
+         ═══════════════════════════════════════════ -->
+    <main class="desktop">
+        <div class="icon" id="user-icon" role="button" tabindex="0" aria-label="Open User Properties">
             <img src="https://win98icons.alexmeub.com/icons/png/user_computer-1.png" alt="User">
             <span>Thuto R</span>
         </div>
-        <div class="icon" id="projects-icon">
+        <div class="icon" id="projects-icon" role="button" tabindex="0" aria-label="Open My Projects">
             <img src="https://win98icons.alexmeub.com/icons/png/directory_closed-0.png" alt="Folder">
             <span>My Projects</span>
         </div>
-        <div class="icon" id="trash-icon">
-            <img src="https://win98icons.alexmeub.com/icons/png/recycle_bin_full-2.png" alt="Trash">
+        <div class="icon" id="trash-icon" role="button" tabindex="0" aria-label="Open Recycle Bin">
+            <img src="https://win98icons.alexmeub.com/icons/png/recycle_bin_full-2.png" alt="Recycle Bin">
             <span>Recycle Bin</span>
         </div>
-        <div class="icon" id="mydocs-icon">
+        <div class="icon" id="mydocs-icon" role="button" tabindex="0" aria-label="Open My Documents">
             <img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs-4.png" alt="My Documents">
             <span>My Documents</span>
         </div>
-        <div class="icon" id="notepad-icon">
+        <div class="icon" id="notepad-icon" role="button" tabindex="0" aria-label="Open Notepad">
             <img src="https://win98icons.alexmeub.com/icons/png/notepad-2.png" alt="Notepad">
             <span>Notepad</span>
         </div>
-        <div class="icon" id="ie-icon">
+        <div class="icon" id="ie-icon" role="button" tabindex="0" aria-label="Open Internet Explorer">
             <img src="https://win98icons.alexmeub.com/icons/png/msie1-2.png" alt="Internet Explorer">
             <span>Internet Explorer</span>
         </div>
-    </div>
-    <div class="start-menu" id="start-menu">
+    </main>
+
+    <!-- ═══════════════════════════════════════════
+         Start Menu
+         ═══════════════════════════════════════════ -->
+    <nav class="start-menu" id="start-menu" aria-label="Start Menu">
         <div class="start-menu-sidebar">Windows<span>98</span></div>
         <div class="start-menu-items">
             <div class="start-menu-item" data-url="user.html">
@@ -62,12 +89,11 @@
                 <span>My Projects</span>
             </div>
             <div class="start-menu-item" data-url="trash.html">
-                <img src="https://win98icons.alexmeub.com/icons/png/recycle_bin_full-2.png" alt="Trash">
+                <img src="https://win98icons.alexmeub.com/icons/png/recycle_bin_full-2.png" alt="Recycle Bin">
                 <span>Recycle Bin</span>
             </div>
             <div class="start-menu-item" data-url="my-documents.html">
-                <img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs-4.png"
-                    alt="My Documents">
+                <img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs-4.png" alt="My Documents">
                 <span>My Documents</span>
             </div>
             <div class="start-menu-item" data-url="notepad.html">
@@ -79,7 +105,7 @@
                 <span>Internet Explorer</span>
             </div>
             <div class="start-menu-item" data-url="msdos.html">
-                <img src="https://win98icons.alexmeub.com/icons/png/console_prompt-0.png" alt="MS-DOS">
+                <img src="https://win98icons.alexmeub.com/icons/png/console_prompt-0.png" alt="MS-DOS Prompt">
                 <span>MS-DOS Prompt</span>
             </div>
             <div class="start-menu-item start-menu-has-sub">
@@ -103,32 +129,39 @@
                 <span>Shut Down...</span>
             </div>
         </div>
-    </div>
+    </nav>
 
-    <div class="taskbar">
-        <div class="start-button" id="start-button">
+    <!-- ═══════════════════════════════════════════
+         Taskbar
+         ═══════════════════════════════════════════ -->
+    <footer class="taskbar">
+        <div class="start-button" id="start-button" role="button" tabindex="0" aria-label="Start Menu">
             <img src="https://win98icons.alexmeub.com/icons/png/windows-4.png" alt="Start">
             <span>Start</span>
         </div>
         <div class="taskbar-spacer"></div>
-        <div class="taskbar-name" id="taskbar-name">
+        <div class="taskbar-name" id="taskbar-name" role="button" tabindex="0" aria-label="Open User Properties">
             <span>Thuto R</span>
         </div>
-        <div class="taskbar-clock" id="taskbar-clock">
+        <div class="taskbar-clock" id="taskbar-clock" aria-live="polite">
             <span id="clock-time">12:00 AM</span>
         </div>
-    </div>
+    </footer>
 
-    <div class="shutdown-screen" id="shutdown-screen">
+    <!-- ═══════════════════════════════════════════
+         Shutdown Screen
+         ═══════════════════════════════════════════ -->
+    <div class="shutdown-screen" id="shutdown-screen" role="alert">
         <div class="shutdown-content">
             <div class="shutdown-logo">
-                <img src="https://win98icons.alexmeub.com/icons/png/windows-0.png" alt="Windows">
+                <img src="https://win98icons.alexmeub.com/icons/png/windows-0.png" alt="Windows Logo">
             </div>
             <h1 class="shutdown-text">It's now safe to turn off<br>your computer.</h1>
             <p class="shutdown-hint">Click anywhere to restart</p>
         </div>
     </div>
 
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
     <script src="js/main.js"></script>
 </body>

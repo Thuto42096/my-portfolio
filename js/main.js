@@ -1,3 +1,12 @@
+/**
+ * main.js — Thuto R's Windows 98 Portfolio
+ *
+ * Handles boot sequence, taskbar clock, window management,
+ * start menu, drag/resize, and all interactive components.
+ */
+
+// ── DOM References ──
+
 const userIcon = document.getElementById('user-icon');
 const projectsIcon = document.getElementById('projects-icon');
 const trashIcon = document.getElementById('trash-icon');
@@ -582,38 +591,20 @@ function dragMoveListener(event) {
     // translate the element
     target.style.transform = 'translate(' + x + 'px, ' + y + 'px)'
 
-    // update the posiion attributes
+    // update the position attributes
     target.setAttribute('data-x', x)
     target.setAttribute('data-y', y)
 }
 
-userIcon.addEventListener('click', () => {
-    openWindow('user.html');
-});
+// ── Desktop Icon Click Handlers ──
 
-projectsIcon.addEventListener('click', () => {
-    openWindow('projects.html');
-});
-
-trashIcon.addEventListener('click', () => {
-    openWindow('trash.html');
-});
-
-notepadIcon.addEventListener('click', () => {
-    openWindow('notepad.html');
-});
-
-ieIcon.addEventListener('click', () => {
-    openWindow('internet-explorer.html');
-});
-
-mydocsIcon.addEventListener('click', () => {
-    openWindow('my-documents.html');
-});
-
-document.getElementById('taskbar-name').addEventListener('click', () => {
-    openWindow('user.html');
-});
+userIcon.addEventListener('click', () => openWindow('user.html'));
+projectsIcon.addEventListener('click', () => openWindow('projects.html'));
+trashIcon.addEventListener('click', () => openWindow('trash.html'));
+notepadIcon.addEventListener('click', () => openWindow('notepad.html'));
+ieIcon.addEventListener('click', () => openWindow('internet-explorer.html'));
+mydocsIcon.addEventListener('click', () => openWindow('my-documents.html'));
+document.getElementById('taskbar-name').addEventListener('click', () => openWindow('user.html'));
 
 // ── Start Menu ──
 
