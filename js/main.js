@@ -5,6 +5,37 @@
  * start menu, drag/resize, and all interactive components.
  */
 
+// ── Global Functions ──
+
+// Download resume function (called from resume.html)
+window.downloadResume = function() {
+    fetch('assets/resume.txt')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Could not fetch resume file');
+            }
+            return response.text();
+        })
+        .then(text => {
+            const blob = new Blob([text], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'Thuto_Ratlhahane_Resume.txt';
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            setTimeout(() => {
+                document.body.removeChild(link);
+                window.URL.revokeObjectURL(url);
+            }, 100);
+        })
+        .catch(error => {
+            console.error('Error downloading resume:', error);
+            alert('Error downloading resume. Please try again.');
+        });
+};
+
 // ── DOM References ──
 
 const userIcon = document.getElementById('user-icon');
